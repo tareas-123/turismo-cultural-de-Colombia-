@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Descubre Colombia: Turismo Cultural y Natural</title>
+
+  <style>
+    /* Estilos generales */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(to right, #ffcc00, #0033a0, #ce1126, #009739);
+      padding: 15px;
+      text-align: center;
+      color: white;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    nav {
+      background: #0033a0;
+      display: flex;
+      justify-content: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 12px 20px;
+      display: block;
+    }
+
+    nav a:hover,
+    nav a.active {
+      background: #ffcc00;
+      color: #000;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    section h2 {
+      color: #0033a0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+
+    footer {
+      background: #0033a0;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 20px;
+    }
+
+     /* ====== FONDO DINAMICO ====== */
+    #boton-interactivo {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 25px;
+      background-color: #0033a0;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    #boton-interactivo:hover {
+      background-color: #ffcc00;
+      color: #000;
+    }
+
+    /* ====== ANIMACION ====== */
+    section 
+    {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    section.visible 
+    {
+      opacity: 1;
+      transform: translateY(0);
+    }
+ 
+    /* ====== BOTON DE SUBIR ====== */
+    /* Estilos del botón "Subir" */
+    #btnSubir 
+    {
+      position: fixed;          /* Fijo en pantalla */
+      bottom: 20px;             /* Distancia desde abajo */
+      right: 20px;              /* Distancia desde la derecha */
+      display: none;            /* Oculto al inicio */
+      background-color: #0033a0; /* Azul principal */
+      color: white;             /* Flecha blanca */
+      border: none;
+      border-radius: 50%;       /* Forma circular */
+      padding: 15px;
+      cursor: pointer;
+      font-size: 22px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+      z-index: 1000;            /* Se muestra sobre todo */
+    }
+    
+    #btnSubir:hover 
+    {
+      background-color: #ffcc00; /* Amarillo al pasar el mouse */
+      color: #000;
+      transform: scale(1.1);     /* Pequeño zoom */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado -->
+<header style="background: linear-gradient(to right, blue, red); color: white; text-align: center; padding: 20px; position: relative;">
+  <h1 id="titulo">Descubre Colombia</h1>
+  <p id="subtitulo">Turismo cultural y natural</p>
+
+  <!-- Botón selector de idioma -->
+  <div style="position: absolute; top: 20px; right: 20px;">
+    <select id="idioma" onchange="cambiarIdioma()">
+      <option value="es">Español</option>
+      <option value="en">English</option>
+    </select>
+  </div>
+</header>
+
+  <!-- Menú -->
+<nav>
+  <a href="#inicio" class="menu-item active">Inicio</a>
+  <a href="#destinos" class="menu-item">Destinos</a>
+  <a href="#gastronomia" class="menu-item">Gastronomía</a>
+  <a href="#eventos" class="menu-item">Eventos Culturales</a>
+  <a href="#galeria" class="menu-item">Galería</a>
+  <a href="#viajes" class="menu-item">Consejos de viaje</a>
+  <a href="#boton interactivo" class="menu-item">boton interactivo</a>
+</nav>
+
+  <!-- Sección Inicio -->
+<section id="inicio" style="position: relative; background-image: url('imagenes/lugares/colombia.jpeg'); background-size: cover; background-position: center; color: rgb(0, 0, 0); text-align: center; padding: 100px 20px;">
+
+  <!-- Capa oscura/transparente encima de la imagen -->
+  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(244, 241, 241, 0.4);"></div>
+
+  <!-- Contenido de texto -->
+  <div style="position: relative; z-index: 1;">
+    <h2 style="font-size: 48px; text-shadow: 2px 2px 5px rgb(251, 250, 250);">Bienvenidos a Colombia</h2>
+    <p style="font-size: 20px; text-shadow: 1px 1px 3px rgb(255, 252, 252);">
+      Un país lleno de vida, colores y tradiciones. Explora nuestras ciudades históricas, maravíllate con paisajes únicos y disfruta de la calidez de su gente. ¡Tu aventura comienza aquí!
+  </div>
+</section>
+
+  <!-- Sección Destinos -->
+<section id="destinos">
+  <h2>Destinos destacados</h2>
+  <div class="grid">
+    <div class="card">
+      <img src="imagenes/lugares/cartagena.jpg" alt="Cartagena" style="width:100%; border-radius:10px;">
+      <h3>Cartagena</h3>
+       <p style="font-size: 14px; color: #555;">
+        Cartagena de Indias es una ciudad costera llena de historia, reconocida por su ciudad amurallada, arquitectura colonial y playas del Caribe que atraen a visitantes de todo el mundo.
+    </div>
+    <div class="card">
+      <img src="imagenes/lugares/medellin.jpg" alt="Medellín" style="width:100%; border-radius:10px;">
+      <h3>Medellín</h3>
+       <p style="font-size: 14px; color: #555;">
+        Conocida como la Ciudad de la eterna primavera, Medellín combina modernidad, cultura e innovación, con eventos como la Feria de las Flores y un clima agradable durante todo el año.
+    </div>
+    <div class="card">
+      <img src="imagenes/lugares/eje cafetero.jpg" alt="Eje Cafetero" style="width:100%; border-radius:10px;">
+      <h3>Eje Cafetero</h3>
+       <p style="font-size: 14px; color: #555;">
+        Esta región montañosa es famosa por sus cafetales, pueblos tradicionales y paisajes verdes. Es un destino ideal para conocer el proceso del café colombiano y disfrutar de su riqueza natural.
+    </div>
+    <div class="card">
+      <img src="imagenes/lugares/caño cristales.jpg" alt="Caño Cristales" style="width:100%; border-radius:10px;">
+      <h3>Caño Cristales</h3>
+       <p style="font-size: 14px; color: #555;">
+        Ubicado en la Sierra de la Macarena, este río es considerado el más hermoso del mundo gracias a sus colores únicos que lo convierten en un espectáculo natural inigualable.
+    </div>
+    <div class="card">
+      <img src="imagenes/lugares/bogota.jpg" alt="bogota" style="width:100%; border-radius:10px;">
+      <h3>Bogota</h3>
+       <p style="font-size: 14px; color: #555;">
+        La capital del país ofrece una experiencia cultural completa, con museos como el del Oro, el centro histórico de La Candelaria y una vida urbana diversa y dinámica.
+    </div>
+  </div>
+</section>
+
+<!-- Sección Gastronomía -->
+<section id="gastronomia">
+  <h2>Gastronomía Colombiana</h2>
+  <div class="grid">
+
+    <!-- Cazuela de Mariscos -->
+    <div class="card">
+      <img src="imagenes/comida/cazuela de mariscos.jpg" alt="Cazuela de Mariscos" style="width:100%; border-radius:10px;">
+      <h3>Cazuela de Mariscos</h3>
+      <p style="font-size: 14px; color: #555;">
+        Este plato típico de Cartagena mezcla mariscos frescos con leche de coco y especias, resaltando el sabor del Caribe.
+      </p>
+    </div>
+
+    <!-- Zancocho -->
+    <div class="card">
+      <img src="imagenes/comida/sancocho.jpeg" alt="Zancocho" style="width:100%; border-radius:10px;">
+      <h3>Zancocho</h3>
+      <p style="font-size: 14px; color: #555;">
+        Este plato típico de Bogotá es una sopa espesa con carnes, plátano y yuca, perfecta para los días fríos.
+      </p>
+    </div>
+
+    <!-- Bandeja de Pescado Frito -->
+    <div class="card">
+      <img src="imagenes/comida/percado frito.jpg" alt="Bandeja de Pescado Frito" style="width:100%; border-radius:10px;">
+      <h3>Bandeja de Pescado Frito</h3>
+      <p style="font-size: 14px; color: #555;">
+        Este plato típico de Cartagena incluye pescado fresco frito acompañado de arroz con coco y patacones.
+      </p>
+    </div>
+
+    <!-- Bandeja Paisa -->
+    <div class="card">
+      <img src="imagenes/comida/bandeja paisa.jpg" alt="Bandeja Paisa" style="width:100%; border-radius:10px;">
+      <h3>Bandeja Paisa</h3>
+      <p style="font-size: 14px; color: #555;">
+        Este plato típico de Medellín es abundante, con fríjoles, arroz, carne, huevo, chorizo, arepa y aguacate.
+      </p>
+    </div>
+
+    <!-- Arepa Paisa -->
+    <div class="card">
+      <img src="imagenes/comida/arepa paisa.jpg" alt="Arepa Paisa" style="width:100%; border-radius:10px;">
+      <h3>Arepa Paisa</h3>
+      <p style="font-size: 14px; color: #555;">
+        Este plato típico del Eje Cafetero es una arepa sencilla y deliciosa, base de la alimentación diaria.
+      </p>
+    </div>
+
+    <!-- Buñuelos -->
+    <div class="card">
+      <img src="imagenes/comida/buñuelos.gif" alt="Buñuelos" style="width:100%; border-radius:10px;">
+      <h3>Buñuelos</h3>
+      <p style="font-size: 14px; color: #555;">
+        Este plato típico de Bogotá son bolitas de queso fritas, crocantes por fuera y suaves por dentro.
+      </p>
+    </div>
+
+    <!-- Sudados Montañeros -->
+    <div class="card">
+      <img src="imagenes/comida/susado montañero.jpg" alt="Sudados Montañeros" style="width:100%; border-radius:10px;">
+      <h3>Sudados Montañeros</h3>
+      <p style="font-size: 14px; color: #555;">
+        Este plato típico del Eje Cafetero combina pollo o carne con papa, yuca y verduras en un guiso casero.
+      </p>
+    </div>
+
+    <!-- Plato Macarenense -->
+    <div class="card">
+      <img src="imagenes/comida/plato macarenense.jpg" alt="Plato Macarenense" style="width:100%; border-radius:10px;">
+      <h3>Plato Macarenense</h3>
+      <p style="font-size: 14px; color: #555;">
+        Este plato típico de Caño Cristales se elabora con carnes y productos locales, resaltando la tradición llanera.
+      </p>
+    </div>
+
+    <!-- Tamal -->
+    <div class="card">
+      <img src="imagenes/comida/tamal.jpeg" alt="Tamal" style="width:100%; border-radius:10px;">
+      <h3>Tamal</h3>
+      <p style="font-size: 14px; color: #555;">
+        Este plato típico de Bogotá es una masa de maíz rellena con carnes y verduras, envuelta en hoja de plátano.
+      </p>
+    </div>
+
+    <!-- Postres -->
+    <div class="card">
+      <img src="imagenes/comida/postres.jpeg" alt="Postres Colombianos" style="width:100%; border-radius:10px;">
+      <h3>Postres Colombianos</h3>
+      <p style="font-size: 14px; color: #555;">
+        Este plato típico de todo el país incluye delicias como el arequipe, las obleas y el bocadillo veleño.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+ <!-- Sección Eventos -->
+<section id="eventos" style="padding: 40px; text-align: center;">
+  <h2 style="margin-bottom: 30px;">Eventos Culturales</h2>
+
+  <div class="grid" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+
+    <!-- Festival Internacional de Cine de Cartagena (FICCI) -->
+    <div class="card" style="width: 300px; text-align: left;">
+      <img src="imagenes/eventos/FICCI.jpg" alt="FICCI Cartagena" style="width:100%; height:200px; object-fit:cover; border-radius:10px;">
+      <h3 style="text-align: center; margin-top: 10px;">
+        <a href="https://ficcifestival.com/" target="_blank" style="color:#040404; text-decoration:none;">Festival Internacional de Cine de Cartagena (FICCI)</a>
+      </h3>
+      <p style="font-size:14px; color:#555;">
+        Evento icónico de Cartagena que exhibe cine iberoamericano y premia a lo mejor del séptimo arte.
+      </p>
+    </div>
+
+    <!-- Hay Festival (Cartagena) -->
+    <div class="card" style="width: 300px; text-align: left;">
+      <img src="imagenes/eventos/hay festival.jpeg" alt="Hay Festival Cartagena" style="width:100%; height:200px; object-fit:cover; border-radius:10px;">
+      <h3 style="text-align: center; margin-top: 10px;">
+        <a href="https://www.hayfestival.com/cartagena" target="_blank" style="color:#040404; text-decoration:none;">Hay Festival</a>
+      </h3>
+      <p style="font-size:14px; color:#555;">
+        Encuentro de escritores, pensadores y artistas en Cartagena para charlas, presentaciones y talleres.
+      </p>
+    </div>
+
+    <!-- Festival del Dulce Cartagenero -->
+    <div class="card" style="width: 300px; text-align: left;">
+      <img src="imagenes/eventos/festival de dulces cartagenero.jpeg" alt="Festival del Dulce Cartagenero" style="width:100%; height:200px; object-fit:cover; border-radius:10px;">
+      <h3 style="text-align: center; margin-top: 10px;">
+        <a href="https://www.cartagenadeindias.travel/" target="_blank" style="color:#040404; text-decoration:none;">Festival del Dulce Cartagenero</a>
+      </h3>
+      <p style="font-size:14px; color:#555;">
+        Celebración tradicional durante Semana Santa que muestra la diversidad de dulces y recetas locales.
+      </p>
+    </div>
+
+    <!-- Festival de la Chicha, la Vida y la Dicha -->
+    <div class="card" style="width: 300px; text-align: left;">
+      <img src="imagenes/eventos/festival de la chicha, la vida y la dicha.jpeg" alt="Festival de la Chicha" style="width:100%; height:200px; object-fit:cover; border-radius:10px;">
+      <h3 style="text-align: center; margin-top: 10px;">
+        <a href="https://bogota.gov.co/" target="_blank" style="color:#040404; text-decoration:none;">Festival de la Chicha, la Vida y la Dicha</a>
+      </h3>
+      <p style="font-size:14px; color:#555;">
+        Festividad en Bogotá que rescata tradiciones indígenas y muiscas alrededor de la chicha y la cultura local.
+      </p>
+    </div>
+
+    <!-- Festival Internacional de Poesía de Bogotá -->
+    <div class="card" style="width: 300px; text-align: left;">
+      <img src="imagenes/eventos/festival de la poesia bogota.jpg" alt="Festival de Poesía de Bogotá" style="width:100%; height:200px; object-fit:cover; border-radius:10px;">
+      <h3 style="text-align: center; margin-top: 10px;">
+        <a href="https://www.festivaldepoesiadebogota.com/" target="_blank" style="color:#040404; text-decoration:none;">Festival Internacional de Poesía de Bogotá</a>
+      </h3>
+      <p style="font-size:14px; color:#555;">
+        Reúne poetas nacionales e internacionales en recitales y actividades literarias por toda la ciudad.
+      </p>
+    </div>
+
+    <!-- Bogotá Góspel -->
+    <div class="card" style="width: 300px; text-align: left;">
+      <img src="imagenes/eventos/bogota gospel.jpg" alt="Bogotá Gospel" style="width:100%; height:200px; object-fit:cover; border-radius:10px;">
+      <h3 style="text-align: center; margin-top: 10px;">
+        <a href="https://bogota.gov.co/mi-ciudad/cultura-recreacion-y-deporte/bogota-gospel-2024" target="_blank" style="color:#040404; text-decoration:none;">Bogotá Góspel</a>
+      </h3>
+      <p style="font-size:14px; color:#555;">
+        Festival masivo de música góspel realizado en el Parque Simón Bolívar, con coros y artistas internacionales.
+      </p>
+    </div>
+
+    <!-- Festival Estéreo Picnic -->
+    <div class="card" style="width: 300px; text-align: left;">
+      <img src="imagenes/eventos/festial estereo picnic.jpeg" alt="Festival Estéreo Picnic" style="width:100%; height:200px; object-fit:cover; border-radius:10px;">
+      <h3 style="text-align: center; margin-top: 10px;">
+        <a href="https://www.festivalestereopicnic.com/" target="_blank" style="color:#040404; text-decoration:none;">Festival Estéreo Picnic</a>
+      </h3>
+      <p style="font-size:14px; color:#555;">
+        Uno de los festivales musicales más importantes de Colombia, con artistas nacionales e internacionales.
+      </p>
+    </div>
+
+    <!-- Feria de las Flores -->
+    <div class="card" style="width: 300px; text-align: left;">
+      <img src="imagenes/eventos/festival de las flores.jpg" alt="Feria de las Flores Medellín" style="width:100%; height:200px; object-fit:cover; border-radius:10px;">
+      <h3 style="text-align: center; margin-top: 10px;">
+        <a href="https://www.feriadelasfloresmedellin.gov.co/" target="_blank" style="color:#040404; text-decoration:none;">Feria de las Flores</a>
+      </h3>
+      <p style="font-size:14px; color:#555;">
+        Fiesta tradicional de Medellín con el Desfile de Silleteros, conciertos, flores y cultura paisa.
+      </p>
+    </div>
+
+    <!-- Carnaval de Barranquilla -->
+    <div class="card" style="width: 300px; text-align: left;">
+      <img src="imagenes/eventos/carnaval de barranquilla.jpg" alt="Carnaval de Barranquilla" style="width:100%; height:200px; object-fit:cover; border-radius:10px;">
+      <h3 style="text-align: center; margin-top: 10px;">
+        <a href="https://www.carnavaldebarranquilla.org/" target="_blank" style="color:#040404; text-decoration:none;">Carnaval de Barranquilla</a>
+      </h3>
+      <p style="font-size:14px; color:#555;">
+        Patrimonio de la Humanidad por la UNESCO, con comparsas, disfraces, música y bailes únicos del Caribe.
+      </p>
+    </div>
+
+    <!-- Feria de Cali -->
+    <div class="card" style="width: 300px; text-align: left;">
+      <img src="imagenes/eventos/feria de cali.jpg" alt="Feria de Cali" style="width:100%; height:200px; object-fit:cover; border-radius:10px;">
+      <h3 style="text-align: center; margin-top: 10px;">
+        <a href="https://www.feriadecali.com.co/" target="_blank" style="color:#040404; text-decoration:none;">Feria de Cali</a>
+      </h3>
+      <p style="font-size:14px; color:#555;">
+        Celebración en diciembre que resalta la salsa, los desfiles y la cultura caleña con grandes artistas.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+  <!-- Sección Galería -->
+<section id="galeria">
+  <h2>Galería</h2>
+
+  <!-- Bogotá -->
+<div class="galeria-lugar">
+  <h3>
+      Bogotá
+    </a>
+  </h3>
+
+  <!-- Enlace debajo del título -->
+  <p style="text-align:center; margin-top:-10px; margin-bottom:15px;">
+    <a href="https://youtu.be/uirvtS9RykE?si=2jsbtJD6kC4xSiRo" target="_blank" 
+       style="color:#0077cc; text-decoration:none; font-weight:bold;">
+      🔗 Ver más información en YouTube
+    </a>
+  </p>
+
+  <div class="grid">
+    <!-- Imágenes -->
+    <img src="imagenes/bogota/imagen 1.jpg" alt="Vista de Bogotá" style="width:100%; border-radius:10px;">
+    <img src="imagenes/bogota/imagen 7.jpg" alt="Vista de Bogotá" style="width:100%; border-radius:10px;">
+    <img src="imagenes/bogota/imagen 3.jpg" alt="Vista de Bogotá" style="width:100%; border-radius:10px;">
+    <img src="imagenes/bogota/imagen 4.jpg" alt="Vista de Bogotá" style="width:100%; border-radius:10px;">
+    <img src="imagenes/bogota/imagen 6.jpg" alt="Vista de Bogotá" style="width:100%; border-radius:10px;">
+    <img src="imagenes/bogota/imagen 2.jpg" alt="Vista de Bogotá" style="width:100%; border-radius:10px;">
+    <img src="imagenes/bogota/imagen 5.jpg" alt="Vista de Bogotá" style="width:100%; border-radius:10px;">
+    <img src="imagenes/bogota/imangen 8.jpg" alt="Vista de Bogotá" style="width:100%; border-radius:10px;">
+
+      <!-- VIDEO EMBEDIDO AJUSTADO -->
+
+          <iframe width="200%" height="315"
+            src="https://www.youtube.com/embed/uirvtS9RykE"
+            title="Video de Cartagena" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Mostrar u ocultar el video al hacer clic en "Bogotá"
+  document.getElementById('mostrarVideoBogota').addEventListener('click', function(event) {
+    event.preventDefault(); // Evita que la página se recargue
+    const video = document.getElementById('videoBogota');
+    video.style.display = (video.style.display === 'none') ? 'block' : 'none';
+  });
+</script>
+
+<!-- Cartagena -->
+<div class="galeria-lugar">
+  <h3>
+      Cartagena
+    </a>
+  </h3>
+  <!-- Enlace debajo del título -->
+  <p style="text-align:center; margin-top:-10px; margin-bottom:15px;">
+    <a href="https://youtu.be/NVR0iObir_o?si=wTTrSfp2iQKKorrn" target="_blank" 
+       style="color:#0077cc; text-decoration:none; font-weight:bold;">
+      🔗 Ver más información en YouTube
+    </a>
+  </p>
+
+  <div class="grid">
+    <!-- Imágenes -->
+    <img src="imagenes/cartagena/imagen 6.jpg" alt="Vista de Cartagena" style="width:100%; border-radius:10px;">
+    <img src="imagenes/cartagena/imagen 7.jpg" alt="Vista de Cartagena" style="width:100%; border-radius:10px;">
+    <img src="imagenes/cartagena/imagen 3.jpg" alt="Vista de Cartagena" style="width:100%; border-radius:10px;">
+    <img src="imagenes/cartagena/imagen 2.jpg" alt="Vista de Cartagena" style="width:100%; border-radius:10px;">
+    <img src="imagenes/cartagena/imagen 5.jpg" alt="Vista de Cartagena" style="width:100%; border-radius:10px;">
+    <img src="imagenes/cartagena/imagen 1.jpg" alt="Vista de Cartagena" style="width:100%; border-radius:10px;">
+    <img src="imagenes/cartagena/imagen 4.jpg" alt="Vista de Cartagena" style="width:100%; border-radius:10px;">
+    <img src="imagenes/cartagena/imagen 8.jpg" alt="Vista de Cartagena" style="width:100%; border-radius:10px;">
+
+   <!-- Video embebido -->
+    <iframe width="200%" height="315" 
+            src="https://www.youtube.com/embed/NVR0iObir_o"     
+            title="Video de Cartagena" frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- Medellín -->
+<div class="galeria-lugar">
+  <h3>
+      Medellín
+    </a>
+  </h3>
+
+  <!-- Enlace debajo del título -->
+  <p style="text-align:center; margin-top:-10px; margin-bottom:15px;">
+    <a href="https://youtu.be/H8-ij0mG2jM?si=WVsEyEkZxVI4LBXk" target="_blank" 
+       style="color:#0077cc; text-decoration:none; font-weight:bold;">
+      🔗 Ver más información en YouTube
+    </a>
+  </p>
+
+  <div class="grid">
+    <!-- Imágenes -->
+    <img src="imagenes/medellin/imagen 3.jpg" alt="Vista de Medellín" style="width:100%; border-radius:10px;">
+    <img src="imagenes/medellin/imagen 1.jpg" alt="Vista de Medellín" style="width:100%; border-radius:10px;">
+    <img src="imagenes/medellin/imagen 7.jpg" alt="Vista de Medellín" style="width:100%; border-radius:10px;">
+    <img src="imagenes/medellin/imagen 5.jpg" alt="Vista de Medellín" style="width:100%; border-radius:10px;">
+    <img src="imagenes/medellin/imagen 2.jpg" alt="Vista de Medellín" style="width:100%; border-radius:10px;">
+    <img src="imagenes/medellin/imagen 4.jpg" alt="Vista de Medellín" style="width:100%; border-radius:10px;">
+    <img src="imagenes/medellin/imagen 6.jpg" alt="Vista de Medellín" style="width:100%; border-radius:10px;">
+    <img src="imagenes/medellin/imagen 8.jpg" alt="Vista de Medellín" style="width:100%; border-radius:10px;">
+
+    <!-- Video embebido -->
+    <iframe width="200%" height="315" 
+            src="https://www.youtube.com/embed/H8-ij0mG2jM"     
+            title="Video de Medellín" frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- Eje Cafetero -->
+<div class="galeria-lugar">
+  <h3>
+      Eje Cafetero
+    </a>
+  </h3>
+
+  <!-- Enlace debajo del título -->
+  <p style="text-align:center; margin-top:-10px; margin-bottom:15px;">
+    <a href="https://youtu.be/NVnDu1HzqOs?si=qZYls5uNF5fpI4Id" target="_blank" 
+       style="color:#0077cc; text-decoration:none; font-weight:bold;">
+      🔗 Ver más información en YouTube
+    </a>
+  </p>
+
+  <div class="grid">
+    <!-- Imágenes -->
+    <img src="imagenes/eje cafetero/imagen 2.jpg" alt="Vista del Eje Cafetero" style="width:100%; border-radius:10px;">
+    <img src="imagenes/eje cafetero/imagen 8.jpg" alt="Vista del Eje Cafetero" style="width:100%; border-radius:10px;">
+    <img src="imagenes/eje cafetero/imagen 6.jpg" alt="Vista del Eje Cafetero" style="width:100%; border-radius:10px;">
+    <img src="imagenes/eje cafetero/imagen 5.jpg" alt="Vista del Eje Cafetero" style="width:100%; border-radius:10px;">
+    <img src="imagenes/eje cafetero/imagen 7.jpg" alt="Vista del Eje Cafetero" style="width:100%; border-radius:10px;">
+    <img src="imagenes/eje cafetero/imagen 3.jpg" alt="Vista del Eje Cafetero" style="width:100%; border-radius:10px;">
+    <img src="imagenes/eje cafetero/imagen 4.jpg" alt="Vista del Eje Cafetero" style="width:100%; border-radius:10px;">
+    <img src="imagenes/eje cafetero/imagen 1.jpg" alt="Vista del Eje Cafetero" style="width:100%; border-radius:10px;">
+
+    <!-- Video embebido -->
+    <iframe width="200%" height="315" 
+            src="https://www.youtube.com/embed/NVnDu1HzqOs"     
+            title="Video del Eje Cafetero" frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- Caño Cristales -->
+<div class="galeria-lugar">
+  <h3>
+      Caño Cristales
+    </a>
+  </h3>
+
+  <!-- Enlace debajo del título -->
+  <p style="text-align:center; margin-top:-10px; margin-bottom:15px;">
+    <a href="https://youtu.be/sCHFwIipGA0?si=OXlJ-GwDuIH6KNIR" target="_blank" 
+       style="color:#0077cc; text-decoration:none; font-weight:bold;">
+      🔗 Ver más información en YouTube
+    </a>
+  </p>
+
+  <div class="grid">
+    <!-- Imágenes -->
+    <img src="imagenes/caño cristal/imagen 1.jpg" alt="Vista de Caño Cristales" style="width:100%; border-radius:10px;">
+    <img src="imagenes/caño cristal/imagen 2.jpg" alt="Vista de Caño Cristales" style="width:100%; border-radius:10px;">
+    <img src="imagenes/caño cristal/imagen 3.png" alt="Vista de Caño Cristales" style="width:100%; border-radius:10px;">
+    <img src="imagenes/caño cristal/imagen 4.jpg" alt="Vista de Caño Cristales" style="width:100%; border-radius:10px;">
+    <img src="imagenes/caño cristal/imagen 5.jpg" alt="Vista de Caño Cristales" style="width:100%; border-radius:10px;">
+    <img src="imagenes/caño cristal/imagen 6.jpg" alt="Vista de Caño Cristales" style="width:100%; border-radius:10px;">
+    <img src="imagenes/caño cristal/imagen 7.jpg" alt="Vista de Caño Cristales" style="width:100%; border-radius:10px;">
+    <img src="imagenes/caño cristal/imagen 8.jpg" alt="Vista de Caño Cristales" style="width:100%; border-radius:10px;">
+
+    <!-- Video embebido -->
+    <iframe width="200%" height="315" 
+            src="https://www.youtube.com/embed/sCHFwIipGA0"     
+            title="Video de Caño Cristales" frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen></iframe>
+  </div>
+</div>
+
+ <!-- Sección viajes -->
+<section id="viajes" style="padding: 40px; text-align: left;">
+  <h2 style="text-align: center;">Consejos de viajes</h2>
+  <p style="max-width: 800px; margin: 0 auto 30px auto; text-align: left;">
+    Aquí se darán recomendaciones de los viajes, qué se puede llevar para cada uno y qué se necesita.
+  </p>
+
+  <!-- Bogotá -->
+  <div style="max-width: 800px; margin: 0 auto 40px auto;">
+    <h3 style="text-align: center;">Bogotá</h3>
+    <p>
+      Bogotá es una ciudad vibrante y cultural, pero su altura y su tamaño hacen que los turistas deban estar bien preparados para moverse cómodamente y disfrutar al máximo.
+    </p>
+    <ol style="padding-left: 20px;">
+      <li>Lleva chaqueta ligera: el clima cambia rápido, incluso en un mismo día.</li>
+      <li>Ten en cuenta la altura: Bogotá está a más de 2.600 m.s.n.m., hidrátate para evitar el mal de altura.</li>
+      <li>Usa transporte público oficial: TransMilenio o taxis de aplicación son más seguros.</li>
+      <li>Camina por el centro histórico en la mañana: evita horarios nocturnos para mayor seguridad.</li>
+      <li>No olvides visitar Monserrate temprano para evitar aglomeraciones.</li>
+      <li>Lleva paraguas o impermeable: las lluvias pueden ser repentinas.</li>
+    </ol>
+  </div>
+
+  <!-- Cartagena -->
+  <div style="max-width: 800px; margin: 0 auto 40px auto;">
+    <h3 style="text-align: center;">Cartagena</h3>
+    <p>
+      Cartagena mezcla historia y playas paradisíacas, por eso conviene cuidarse del sol y planificar con tiempo las visitas para disfrutar sin imprevistos.
+    </p>
+    <ol style="padding-left: 20px;">
+      <li>Usa bloqueador solar siempre: el sol es fuerte durante todo el año.</li>
+      <li>Bebe agua embotellada para evitar problemas estomacales.</li>
+      <li>Lleva ropa fresca y ligera: la humedad es alta.</li>
+      <li>Haz reservas previas para excursiones a Islas del Rosario.</li>
+      <li>Visita la ciudad amurallada en la tarde para disfrutar atardeceres únicos.</li>
+      <li>Negocia precios de artesanías en mercados locales.</li>
+    </ol>
+  </div>
+
+  <!-- Medellín -->
+  <div style="max-width: 800px; margin: 0 auto 40px auto;">
+    <h3 style="text-align: center;">Medellín</h3>
+    <p>
+      Medellín es moderna, innovadora y muy cultural, con un clima agradable todo el año y transporte accesible para moverse fácil.
+    </p>
+    <ol style="padding-left: 20px;">
+      <li>Lleva ropa ligera, pero incluye un suéter: Medellín es la "ciudad de la eterna primavera".</li>
+      <li>Usa el metro y el metrocable: es económico y te permite ver la ciudad desde arriba.</li>
+      <li>Recorre los barrios con guías locales: así garantizas seguridad y contexto cultural.</li>
+      <li>Asiste a la Feria de las Flores si viajas en agosto: es la celebración más emblemática.</li>
+      <li>Explora el Parque Arví para conectar con la naturaleza.</li>
+      <li>Visita la Comuna 13 para apreciar el arte urbano y su historia de transformación.</li>
+    </ol>
+  </div>
+
+  <!-- Eje Cafetero -->
+  <div style="max-width: 800px; margin: 0 auto 40px auto;">
+    <h3 style="text-align: center;">Eje Cafetero</h3>
+    <p>
+      El Eje Cafetero combina naturaleza, paisajes montañosos y cultura del café; lo ideal es viajar con calma para disfrutar sus recorridos rurales.
+    </p>
+    <ol style="padding-left: 20px;">
+      <li>Visita los cafetales con guía para aprender el proceso del café.</li>
+      <li>Lleva zapatos cómodos para caminar en montañas y senderos.</li>
+      <li>Prueba la gastronomía local: arepas de chócolo, fiambres y postres de café.</li>
+      <li>Dedica tiempo a pueblos como Salento y Filandia: su arquitectura colorida es única.</li>
+      <li>Haz un recorrido por el Valle del Cocora y sus palmas de cera.</li>
+      <li>Lleva ropa ligera en el día y abrigada para las noches frescas.</li>
+    </ol>
+  </div>
+
+  <!-- Caño Cristales -->
+  <div style="max-width: 800px; margin: 0 auto 40px auto;">
+    <h3 style="text-align: center;">Caño Cristales</h3>
+    <p>
+      Caño Cristales es considerado el “río más bonito del mundo”, pero su acceso es restringido para cuidar el ecosistema, por eso la planificación es fundamental.
+    </p>
+    <ol style="padding-left: 20px;">
+      <li>Solo se puede visitar entre junio y noviembre: planifica tu viaje en estas fechas.</li>
+      <li>Usa ropa de senderismo y sandalias acuáticas, ya que caminarás entre ríos y rocas.</li>
+      <li>Evita usar bloqueadores o repelentes dentro del río: protegen el ecosistema único.</li>
+      <li>Viaja con un operador turístico autorizado: es un parque protegido y requiere permisos.</li>
+      <li>Lleva una buena cámara: los colores del río son únicos en el mundo.</li>
+      <li>Prepárate para caminatas largas: la experiencia es exigente físicamente.</li>
+    </ol>
+  </div>
+</section>
+
+  <!-- Sección boton interactivo -->
+   <section id="boton interactivo">
+
+   <!-- Botón Interactivo SOLO AQUÍ -->
+    <button id="boton-interactivo">🌈 Cambiar color de fondo</button>
+  </section>
+
+  <!-- Conexión con el archivo JavaScript -->
+   <script src="scripts/main.js"></script>
+   
+  <!-- Botón para subir -->
+   <button id="btnSubir" title="Volver arriba">⬆️</button>
+   
+  <!-- Estilos del botón -->
+   <style>
+   /* Botón de subir */
+   #btnSubir 
+   {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none; /* Oculto por defecto */
+    background-color: #0033a0;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 15px;
+    cursor: pointer;
+    font-size: 22px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    z-index: 1000;
+  }
+  
+  /* Efecto hover */
+  #btnSubir:hover 
+  {
+    background-color: #ffcc00;
+    color: #000;
+    transform: scale(1.1);
+  }
+  </style>
+  
+  <!-- JavaScript funcional -->
+   <script>
+  // Esperar a que el DOM cargue
+  document.addEventListener("DOMContentLoaded", function() {
+    const btnSubir = document.getElementById("btnSubir");
+
+    // Mostrar el botón al hacer scroll
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 200) {
+        btnSubir.style.display = "block";
+      } else {
+        btnSubir.style.display = "none";
+      }
+    });
+
+    // Volver al inicio suavemente
+    btnSubir.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  });
+  </script>
+
+</body>
+</html>
